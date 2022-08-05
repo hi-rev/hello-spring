@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<!--이를 작성해주어야 타임리프 문법이 에러를 일으키지 않고 동작할 수 있음-->
+<!--thymeleaf 템플릿 엔진 선언-->
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html"; charset="UTF-8">
+    <title>Hello</title>
+</head>
+<body>
+Hello
+<p th:text="'안녕하세요. ' + ${data}" >안녕하세요. 손님</p>
+</body>
+</html>

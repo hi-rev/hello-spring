@@ -1,0 +1,10 @@
+<!--이를 작성해주어야 타임리프 문법이 에러를 일으키지 않고 동작할 수 있음-->
+<!--thymeleaf 템플릿 엔진 선언-->
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+Hello
+<!-- 서버가 동작되면 text 요소가 실행 되지만 그냥 타임리프에서 실행하면 hello! empty 가 실행되어
+ 서버를 실행하지 않고도 html 파일을 볼 수 있음-->
+<p th:text="'hello ' + ${name}" >hello! empty</p>
+</body>
+</html>

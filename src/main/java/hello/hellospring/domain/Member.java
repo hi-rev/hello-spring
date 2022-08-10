@@ -1,7 +1,8 @@
 package hello.hellospring.domain;
 // 회원ID와 이름 필요
+// 회원 도메인 Member 클래스
 public class Member {
-    private Long id;
+    private Long id;  // 고객이 정하는 id가 아니라 시스템이 정하는 id
     private String name;
 
     // id와 name이 private이기 때문에 getter setter 생성

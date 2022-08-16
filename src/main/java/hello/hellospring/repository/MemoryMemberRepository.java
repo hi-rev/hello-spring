@@ -10,7 +10,6 @@ import java.util.*;
 
 // implements 를 통해 interface 사용
 // Alt + Enter 단축키를 통해 interface 메소드 모두 가져오기 가능
-@Repository
 public class MemoryMemberRepository implements MemberRepository {
 
     // HashMap에 <key, value> 를 <Long, Member> 타입으로 저장

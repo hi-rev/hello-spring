@@ -11,14 +11,10 @@ import java.util.Optional;
 // 서비스는 비즈니스를 처리하는 용도이기 때문에 메서드명 같은 경우에도 비즈니스와 관련된 용어를 사용하는 것이 좋다.
 
 // Test 파일 만들 때 단축키: 클래스 안에서 Ctrl + Shift + T
-@Service
 public class MemberService {
     // MemberRepository 인터페이스를 참조하는 새 MemoryMemberRepository 객체...?
     private final MemberRepository memberRepository;
 
-    // new로 객체를 생성하지 않고
-    // @Autowired를 통한 객체 생성
-    @Autowired
     public MemberService(MemberRepository memberRepository) {
         this.memberRepository = memberRepository;
     }

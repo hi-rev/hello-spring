@@ -3,15 +3,25 @@ package hello.hellospring.service;
 import hello.hellospring.domain.Member;
 import hello.hellospring.repository.MemberRepository;
 import hello.hellospring.repository.MemoryMemberRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 // 서비스는 비즈니스를 처리하는 용도이기 때문에 메서드명 같은 경우에도 비즈니스와 관련된 용어를 사용하는 것이 좋다.
 
 // Test 파일 만들 때 단축키: 클래스 안에서 Ctrl + Shift + T
+@Service
 public class MemberService {
     // MemberRepository 인터페이스를 참조하는 새 MemoryMemberRepository 객체...?
-    private final MemberRepository memberRepository = new MemoryMemberRepository();
+    private final MemberRepository memberRepository;
+
+    // new로 객체를 생성하지 않고
+    // @Autowired를 통한 객체 생성
+    @Autowired
+    public MemberService(MemberRepository memberRepository) {
+        this.memberRepository = memberRepository;
+    }
 
     // 회원 가입
     // 만일 같은 이름의 회원 가입을 불가능하다고 가정하였을 때(중복 member X)

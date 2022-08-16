@@ -1,6 +1,8 @@
 package hello.hellospring.repository;
 
 import hello.hellospring.domain.Member;
+import org.springframework.stereotype.Repository;
+
 import java.util.*;
 // TDD(테스트 주도 개발)
 // => 테스트를 먼저 만들고 테스트를 통과하기 위한 것을 짜는 것
@@ -8,6 +10,7 @@ import java.util.*;
 
 // implements 를 통해 interface 사용
 // Alt + Enter 단축키를 통해 interface 메소드 모두 가져오기 가능
+@Repository
 public class MemoryMemberRepository implements MemberRepository {
 
     // HashMap에 <key, value> 를 <Long, Member> 타입으로 저장

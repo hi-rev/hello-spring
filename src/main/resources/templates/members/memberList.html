@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<div class="container">
+  <div>
+    <table>
+      <thead>
+      <tr>
+        <th>#</th>
+        <th>이름</th>
+      </tr>
+      </thead>
+      <tbody>
+      <!--th:each는 타임리프 문법이다 / 루프를 도는 역할-->
+      <tr th:each="member : ${members}"> <!--첫번째 객체를 담아서 member에 저장-->
+        <td th:text="${member.id}"></td> <!--id 출력-->
+        <td th:text="${member.name}"></td> <!--name 출력-->
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+</body>
+</html>

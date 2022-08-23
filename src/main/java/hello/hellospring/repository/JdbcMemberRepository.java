@@ -11,19 +11,20 @@ import java.util.Optional;
 
 public class JdbcMemberRepository implements MemberRepository {
     // 먼저, DB를 사용하려면 데이터 소스라는 것이 필요하다.
+    // 스프링이 dataSource라는 것을 만들어놓는다. 이것은 주입받을 수 있도록 해준다.
     private final DataSource dataSource;
 
     public JdbcMemberRepository(DataSource dataSource) {
         this.dataSource = dataSource;
     }
 
+
     // save 하려면 쿼리 짜야함
     @Override
     public Member save(Member member) {
-        String sql = "insert into member(name) values(?)";
-        // 데이터베이스 커넥션을 가지고 온다.
-        Connection conn = null;
-        PreparedStatement pstmt = null;
+        String sql = "insert into member(name) values(?)"; // sql문
+        Connection conn = null; // 데이터베이스 커넥션
+        PreparedStatement pstmt = null; // SQL DB에 전달
         ResultSet rs = null; // 결과를 받는 것
 
         try {
@@ -31,10 +32,11 @@ public class JdbcMemberRepository implements MemberRepository {
             // prepareStatement를 통해 sql을 넣음
             pstmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
 
+            // parameterIndex는 위 sql문 (?)과 매칭된다.
             pstmt.setString(1, member.getName());
 
-            pstmt.executeUpdate(); // 쿼리 전송
-            rs = pstmt.getGeneratedKeys(); // 데이터를 꺼내줌
+            pstmt.executeUpdate(); // 실제 쿼리 전송
+            rs = pstmt.getGeneratedKeys(); // DB에서 데이터를 꺼내줌
 
             if (rs.next()) { // 값이 있으면 꺼냄
                 member.setId(rs.getLong(1));
@@ -49,6 +51,7 @@ public class JdbcMemberRepository implements MemberRepository {
         }
     }
 
+    // 한명 찾기
     @Override
     public Optional<Member> findById(Long id) {
         String sql = "select * from member where id = ?";
@@ -79,6 +82,7 @@ public class JdbcMemberRepository implements MemberRepository {
         }
     }
 
+    // 멤버 모두 찾기
     @Override
     public List<Member> findAll() {
         String sql = "select * from member";
@@ -134,7 +138,7 @@ public class JdbcMemberRepository implements MemberRepository {
         }
     }
     private Connection getConnection() {
-        // getConnection을 쓸 때는 Utils를 통해 가지고 와야함
+        // getConnection을 쓸 때는 DataSourceUtils를 통해 가지고 와야함
         // getConnection: 실제 자바 프로그램과 데이터베이스를 네트워크 상에서 연결해주는 메소드
         // 연결에 성공하면 DB와 연결된 상태를 Connection 객체로 표현하여 반환
         return DataSourceUtils.getConnection(dataSource);

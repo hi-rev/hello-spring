@@ -1,12 +1,12 @@
 package hello.hellospring.domain;
 
-import javax.persistence.*;
+//import javax.persistence.*;
 
 // 회원ID와 이름 필요
 // 회원 도메인 Member 클래스
-@Entity
+//@Entity
 public class Member {
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+//    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;  // 고객이 정하는 id가 아니라 시스템이 정하는 id
     private String name;
 

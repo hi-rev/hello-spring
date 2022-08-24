@@ -12,4 +12,4 @@ https://www.inflearn.com/course/%EC%8A%A4%ED%94%84%EB%A7%81-%EC%9E%85%EB%AC%B8-%
 - [X] 4. 스프링 빈과 의존관계
 - [X] 5. 회원 관리 예제 - 웹 MVC 개발
 - [X] 6. 스프링 DB 접근 기술
-- [ ] 7. AOP
+- [X] 7. AOP

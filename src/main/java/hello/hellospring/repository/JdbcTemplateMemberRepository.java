@@ -7,19 +7,18 @@ import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
 
 import javax.sql.DataSource;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
 public class JdbcTemplateMemberRepository implements MemberRepository {
-
+    // JdbcTemplate이 존재하기 때문에 사용
     // final: 이 변수는 수정할 수 없다는 의미를 가짐
     private final JdbcTemplate jdbcTemplate;
 
-    // 생성자
+    // 생성자 딱 하나일 때 @Autowired를 생략할 수 있다.
+    // DataSource가 필요하다.
     public JdbcTemplateMemberRepository(DataSource dataSource) {
         this.jdbcTemplate = new JdbcTemplate(dataSource);
     }
@@ -55,8 +54,9 @@ public class JdbcTemplateMemberRepository implements MemberRepository {
         return jdbcTemplate.query("select * from member", memberRowMapper());
     }
 
+    // jdbcTemplate.query를 사용한 결과 값을 받을 때 RowMapper 라는 것으로 매핑을 해주어야 한다.
     private RowMapper<Member> memberRowMapper() {
-        return (rs, rowNum) -> {
+        return (rs, rowNum) -> { // 람다 스타일
             Member member = new Member();
             member.setId(rs.getLong("id"));
             member.setName(rs.getString("name"));

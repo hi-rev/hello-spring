@@ -4,7 +4,6 @@ import hello.hellospring.repository.MemberRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.annotation.Commit;
 import org.springframework.transaction.annotation.Transactional;
 
 import static org.assertj.core.api.Assertions.*;
@@ -17,7 +16,6 @@ class MemberServiceIntegrationTest {
     @Autowired MemberService memberService; // 멤버서비스 객체 생성
     @Autowired
     MemberRepository memberRepository;
-
 
     @Test
     void join() {
